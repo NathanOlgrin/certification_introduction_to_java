@@ -66,10 +66,6 @@ public class Main {
         System.out.println(sorted_phoneBook);
     }
 
-    public static void out_phonebook(){
-        sort_phonebook();
-    }
-
     public static void main(String[] args) {
 
         add_abonents();
