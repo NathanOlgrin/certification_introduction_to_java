@@ -12,14 +12,18 @@ public class Main {
         sorted_phoneBook = new LinkedHashMap<>();
     }
     public static void add(String name, Long phoneNum) {
+
+        /* Данный метод добавляет один номер и одно имя в телефонную книгу*/
+
         ArrayList<Long> phoneNums = phoneBook.getOrDefault(name, new ArrayList<>());
-
         phoneNums.add(phoneNum);
-
         phoneBook.put(name, phoneNums);
     }
 
     public static void add_abonents(){
+
+        /*Данный метод реализует заполнение телефонной книги до тех пор, пока пользователь не сочтет нужным прекратить добавление*/
+
         boolean check = false;
         while(!check){
             System.out.println("Введите имя: ");
@@ -42,17 +46,20 @@ public class Main {
     }
 
     public static void sort_phonebook(){
+
+        /*Данный метод сортирует телефонную книгу*/
+
         int count_number = 0;
         String check_name = "";
         while(!phoneBook.isEmpty()){
-            for(Map.Entry<String, ArrayList<Long>> entry : phoneBook.entrySet() ){
-                if(entry.getValue().size() > count_number){
+            for(Map.Entry<String, ArrayList<Long>> entry : phoneBook.entrySet() ){ // переборка телефонной книги в целях поиска максимального количества номеров
+                if(entry.getValue().size() > count_number){ // проверка количества номеров
                     count_number= entry.getValue().size();
-                    check_name = entry.getKey();
+                    check_name = entry.getKey(); //ввод в буферную переменную имени абонента с максимальным на данный момент количеством номеров
                 }
             }
-            sorted_phoneBook.put(check_name, phoneBook.get(check_name));
-            phoneBook.remove(check_name);
+            sorted_phoneBook.put(check_name, phoneBook.get(check_name)); // добавление данных в отсортированную телефонную книгу
+            phoneBook.remove(check_name); //удаление данных из первичной телефонной книги
             count_number = 0;
             check_name = "";
         }
@@ -65,12 +72,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         add_abonents();
-        System.out.println("check1");
-        System.out.println(phoneBook);
-        System.out.println("check2");
         sort_phonebook();
-
     }
 }
